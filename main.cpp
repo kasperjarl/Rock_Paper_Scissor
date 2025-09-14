@@ -4,8 +4,8 @@
 
 int main()
 {
-	// seems like we're getting an inf loops now 
-	rps("Kasper", "Alberte");
+	// we're adressing the persons in the opposite order than given
+	rps(getName(), getName());
 	
 	return 0;
 }

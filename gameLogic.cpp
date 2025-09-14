@@ -5,10 +5,19 @@
 namespace constants
 {
 	// how many points to win
-	const int max_points{ 3 };
+	const int max_points{ 2 };
 	const int draw{ 0 };
 	const int p1win{ 1 };
 	const int p2win{ 2 };
+}
+
+const std::string getName()
+{
+	std::cout << "Enter name of player 1: ";
+	std::string name{};
+	std::cin >> name;
+
+	return name;
 }
 
 //rock paper scissors main loop
@@ -17,25 +26,34 @@ void rps(const std::string& player1, const std::string& player2)
 	int p1Points{ 0 };
 	int p2Points{ 0 };
 
-	while (p1Points < 3 && p2Points < 3)
+	
+	while (p1Points <= constants::max_points && p2Points <= constants::max_points)
 	{
-		if (whoWins(userInput(player1), userInput(player2), player1, player2) == constants::p1win)
+		// finds out who is the winner
+		int winner{ whoWins(userInput(player1), userInput(player2), player1, player2 )};
+
+		if (winner == constants::p1win)
 		{
 			++p1Points;
+			std::cout << player1 << ": " << p1Points << ". " << player2 <<
+				 ": " << p2Points << ".\n";
+
 		}
-		else if (whoWins(userInput(player1), userInput(player2), player1, player2) == constants::p2win)
+		else if (winner == constants::p2win)
 		{
 			++p2Points;
+			std::cout << player1 << ": " << p1Points << ". " << player2 <<
+				 ": " << p2Points << ".\n";
 		}
 	}
 
 	if (p1Points == 3)
 	{
-		std::cout << player1 << " wins!\n";
+		std::cout << '\n' << player1 << " has won the game!\n";
 	}
 	else
 	{
-		std::cout << player2 << " wins!\n";
+		std::cout << '\n' << player2 << " has won the game!\n";
 	}
 }
 
